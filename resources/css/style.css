@@ -1,0 +1,14 @@
+/* Basic styling for the SentinX Control Center */
+
+/* Ensure the sidebar buttons have a consistent appearance */
+.sidebar-button {
+    background-color: @theme_bg_color;
+    border-radius: 4px;
+    padding: 6px;
+    text-align: start;
+}
+
+.sidebar-button:hover {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
