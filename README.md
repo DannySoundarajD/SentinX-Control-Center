@@ -1,76 +1,72 @@
-# SentinX Control Center – Dock Enhancements
+# SentinX Control Center
 
-## Overview
-This repository contains the **SentinX Control Center**, a GTK 4 based configuration UI for the **SentinX Dock** (Plank). The recent work focuses on extending dock management capabilities and improving reliability.
-
----
-
-## What Has Been Implemented
-
-### 1. Robust Dock Settings Backend (`backend/dock.py`)
-- **JSON + GSettings sync** – All dock preferences are stored in `~/.config/sentinx/dock.json` **and** mirrored to Plank’s GSettings schema (`net.launchpad.plank.dock.settings`).
-- **Autohide synchronization** – On startup the current GSettings `hide‑mode` is read and the JSON `autohide` flag is updated, ensuring the UI always reflects the real dock state.
-- **Icon‑size validation** – `set_icon_size` now clamps values to the schema‑valid range (24‑128) before persisting, preventing GSettings errors.
-- **Pinned‑apps handling** –
-  - `get_pinned_apps` reads from GSettings `dock-items` (fallback to JSON).
-  - `set_pinned_apps` writes to both GSettings and JSON.
-  - Convenience helpers `add_pinned_app` / `remove_pinned_app` added for UI use.
-- **Reset to defaults** – Resets the JSON configuration **and** forces all GSettings keys (position, size, zoom, autohide, spacing, animation speed, and pinned apps) back to factory defaults, then reloads the XML tree.
-
-### 2. Dock Page UI (`pages/dock.py`)
-- Added a **Pinned Apps** card that shows currently pinned applications in a `Gtk.ListBox`.
-- **Add Application** button opens a native GTK 4 `Gtk.FileChooserNative` filtered for `*.desktop` files, adds the selected app to the pinned list, and refreshes the UI.
-- Each list row includes a **Remove** button to unpin an app.
-- Reset button now also refreshes the pinned‑apps list.
-- Updated `_refresh_pinned_list`, `_on_add_app_clicked`, and `_on_remove_pinned` to work with the new backend methods.
-
-### 3. Appearance Page Fix (`pages/appearance.py`)
-- Replaced the deprecated `Gtk.FileChooserDialog` with `Gtk.FileChooserNative` for wallpaper selection.
-- Added safe fallback handling for the missing `run()` method and an image‑file filter.
-
-### 4. General Improvements
-- Added missing imports (`pathlib`) where required.
-- Ensured all UI dialogs use `transient_for=self.get_root()` (GTK 4) instead of the removed `get_toplevel()`.
-- Added comprehensive inline documentation/comments.
+SentinX Control Center is a premium, custom GTK 4-based control panel designed specifically for SentinX OS. It features a modern dark glassmorphism design system, real-time performance diagnostics, and system-wide customizer pages.
 
 ---
 
-## How to Use
-1. **Run the Control Center**
+## Key Features
+
+### 1. 📈 Performance Monitor (Dashboard)
+- **Cairo-based Circular Ring Gauges**: Real-time animated rings tracking CPU, memory, GPU, and battery levels, complete with neon outer glow layers and active tip indicators.
+- **Scrolling Bezier Wave Graphs**: Smooth overlay graph scrolling CPU, RAM, and GPU history at ~30fps.
+- **Live Metrics**: Detailed processor stats, VRAM allocations/usage (via `nvidia-smi`), storage utilization, and power diagnostics.
+
+### 2. 🎨 Desktop Customization (Appearance)
+- **Microsoft Paint-style Accent Color Picker**: Visual grid layout showing 36 curated swatches with corresponding hex code strings, dynamic hex-text overrides, and live swatch previews.
+- **System-wide Theme Integration**: Instant toggles for dark/light mode across GTK themes, XFCE panels, and Whisker Menus.
+- **Compositor Transparency Slider**: Controls XFWM4 active/inactive frame and window composition opacities directly.
+- **Multi-Monitor Wallpaper Manager**: Scans Xrandr outputs to bind wallpaper changes instantly to all connected screens and workspaces.
+
+### 3. ⚙️ Hardware Controls & Sudo Utilities (System)
+- **Audio Volume Slider & Mute Toggle**: Real-time audio configuration synchronized via `pactl`.
+- **Screen Brightness Slider**: Hardware brightness scaling mapped to active screens via X11 outputs.
+- **Sudo Hostname Updater**: Secure graphical Polkit dialog wrapper (`pkexec hostnamectl`) allowing users to edit system hosts under authentic admin credentials.
+- **System Power Manager**: Fast shutdown, reboot, and suspend actions.
+
+### 4. ⚓ Dock & Panel Customizer
+- **Drag-and-Drop Reordering**: Rearrange dock pinned apps instantly with standard GTK 4 drag-and-drop handles.
+- **Searchable Desktop App Launcher**: Clean launcher dialog displaying all installed `.desktop` file entries, complete with search filtering to add items to the dock.
+- **Panel Layout Customizer**: Real-time length, size, hover opacity, and autohide behavior adjustments for XFCE panels.
+
+---
+
+## Screenshots
+
+### 📊 Performance Dashboard
+![Performance Dashboard](assets/dashboard.png)
+
+### 🎨 Appearance & Accent Colors
+![Appearance Page](assets/appearence.png)
+
+### ⚓ Dock Preferences
+![Dock Page](assets/dock.png)
+
+### ⚙️ Panel Customizer
+![Panel Page](assets/panel.png)
+
+---
+
+## How to Run
+
+1. Navigate to the project directory:
    ```bash
-   cd /home/danny/Desktop/SentinX-OS/Sentinel-Dock/source/sentinx-control-center
+   cd /home/danny/Desktop/SentinX-OS/control-center
+   ```
+2. Start the application:
+   ```bash
    python3 main.py
    ```
-   - The Dock page now includes a section to manage pinned apps.
-   - Changes to position, size, zoom, autohide, etc., are instantly reflected in the running Plank dock.
-
-2. **Add a Pinned App**
-   - Click **Add Application**, choose a `.desktop` file, and the app appears in the list and on the dock.
-   - Use the **Remove** button next to any entry to unpin it.
-
-3. **Reset Settings**
-   - Press **Restore defaults** to revert all dock settings (including pinned apps) to the original configuration.
 
 ---
 
-## Development & Contribution
-- The project follows the standard Git workflow. After making changes run:
-  ```bash
-  git add source/sentinx-control-center/README.md
-  git add <modified files>
-  git commit -m "Enhanced dock backend, added pinned‑apps UI, fixed dialogs"
-  git push origin main
-  ```
-- Ensure you have the latest Plank GSettings schema compiled:
-  ```bash
-  glib-compile-schemas /home/danny/Desktop/SentinX-OS/Sentinel-Dock/source/sentinx-dock/data
-  ```
+## Development commands
+
+Compile Plank schemas if changing GSettings configurations:
+```bash
+glib-compile-schemas /home/danny/Desktop/SentinX-OS/Sentinel-Dock/source/sentinx-dock/data
+```
 
 ---
 
 ## License
-The code is released under the same license as the rest of the Sentinel‑Dock project (see the top‑level `LICENSE` file).
-
----
-
-*Last updated: $(date '+%Y-%m-%d')*
+Released under the terms of the GPLv3 License.

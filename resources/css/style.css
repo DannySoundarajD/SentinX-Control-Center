@@ -1,14 +1,605 @@
-/* Basic styling for the SentinX Control Center */
+/* ============================================================
+   SentinX Control Center – Premium Dark Glassmorphism Theme
+   ============================================================ */
 
-/* Ensure the sidebar buttons have a consistent appearance */
-.sidebar-button {
-    background-color: @theme_bg_color;
-    border-radius: 4px;
-    padding: 6px;
-    text-align: start;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ── Global Reset & Variables ─────────────────────────────── */
+* {
+    font-family: "Inter", "Cantarell", "Noto Sans", sans-serif;
 }
 
-.sidebar-button:hover {
-    background-color: @theme_selected_bg_color;
-    color: @theme_selected_fg_color;
+window,
+.window-bg {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sentinx-sidebar {
+    background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 6px;
+    min-width: 210px;
+}
+
+.sentinx-sidebar-header {
+    padding: 16px 12px 20px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 8px;
+}
+
+.sentinx-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #58a6ff;
+    letter-spacing: 0.5px;
+}
+
+.sentinx-logo-sub {
+    font-size: 10px;
+    font-weight: 400;
+    color: #8b949e;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.nav-button {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #8b949e;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    transition: all 150ms ease;
+    margin-bottom: 2px;
+}
+
+.nav-button:hover {
+    background: rgba(88, 166, 255, 0.08);
+    color: #c9d1d9;
+}
+
+.nav-button.active,
+.nav-button:checked {
+    background: linear-gradient(135deg, rgba(88,166,255,0.18) 0%, rgba(88,166,255,0.08) 100%);
+    color: #58a6ff;
+    font-weight: 600;
+}
+
+/* ── Content Area ─────────────────────────────────────────── */
+.content-area {
+    background-color: #0d1117;
+}
+
+.page-scroll {
+    background: transparent;
+}
+
+/* ── Page Header ──────────────────────────────────────────── */
+.page-header {
+    padding: 28px 28px 16px 28px;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e6edf3;
+    letter-spacing: -0.3px;
+}
+
+.page-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #8b949e;
+    margin-top: 2px;
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.settings-card {
+    background: rgba(22, 27, 34, 0.95);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 0;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.card-title-row {
+    padding: 18px 20px 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8b949e;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.card-icon {
+    color: #58a6ff;
+    margin-right: 8px;
+}
+
+/* ── Setting Rows ─────────────────────────────────────────── */
+.setting-row {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 120ms ease;
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+    border-radius: 0 0 16px 16px;
+}
+
+.setting-row:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.setting-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #c9d1d9;
+}
+
+.setting-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #6e7681;
+    margin-top: 1px;
+}
+
+/* ── Switches ─────────────────────────────────────────────── */
+switch {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    min-width: 46px;
+    min-height: 26px;
+    transition: all 200ms ease;
+}
+
+switch:checked {
+    background: linear-gradient(135deg, #58a6ff, #3b82f6);
+    border-color: #58a6ff;
+}
+
+switch slider {
+    background: #ffffff;
+    border-radius: 100px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    min-width: 20px;
+    min-height: 20px;
+}
+
+/* ── Sliders ──────────────────────────────────────────────── */
+scale trough {
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    min-height: 4px;
+}
+
+scale trough highlight {
+    background: linear-gradient(90deg, #58a6ff, #3b82f6);
+    border-radius: 4px;
+}
+
+scale slider {
+    background: #ffffff;
+    border: 2px solid #58a6ff;
+    border-radius: 100px;
+    min-width: 16px;
+    min-height: 16px;
+    box-shadow: 0 2px 8px rgba(88,166,255,0.35);
+    transition: all 150ms ease;
+}
+
+scale slider:hover {
+    background: #58a6ff;
+    box-shadow: 0 2px 12px rgba(88,166,255,0.5);
+}
+
+/* ── SpinButtons ──────────────────────────────────────────── */
+spinbutton {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #e6edf3;
+    padding: 6px 10px;
+    font-size: 13px;
+    min-width: 70px;
+}
+
+spinbutton:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.2);
+    outline: none;
+}
+
+spinbutton button {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    padding: 4px 6px;
+}
+
+spinbutton button:hover {
+    color: #58a6ff;
+}
+
+/* ── Dropdowns / ComboBoxText ─────────────────────────────── */
+combobox button,
+comboboxtext button {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #e6edf3;
+    padding: 6px 12px;
+    font-size: 13px;
+    min-width: 120px;
+    transition: all 150ms ease;
+}
+
+combobox button:hover,
+comboboxtext button:hover {
+    background: rgba(88,166,255,0.1);
+    border-color: #58a6ff;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+button.action-button {
+    background: linear-gradient(135deg, #58a6ff 0%, #3b82f6 100%);
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    box-shadow: 0 4px 14px rgba(88,166,255,0.4);
+    transition: all 150ms ease;
+}
+
+button.action-button:hover {
+    background: linear-gradient(135deg, #79b8ff 0%, #58a6ff 100%);
+    box-shadow: 0 6px 20px rgba(88,166,255,0.5);
+}
+
+button.destructive-action {
+    background: rgba(248, 81, 73, 0.15);
+    border: 1px solid rgba(248, 81, 73, 0.35);
+    border-radius: 8px;
+    color: #f85149;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    transition: all 150ms ease;
+}
+
+button.destructive-action:hover {
+    background: rgba(248, 81, 73, 0.25);
+    border-color: #f85149;
+}
+
+button.suggested-action {
+    background: linear-gradient(135deg, #58a6ff 0%, #3b82f6 100%);
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    box-shadow: 0 4px 14px rgba(88,166,255,0.4);
+    transition: all 150ms ease;
+}
+
+button.flat-action {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #c9d1d9;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    transition: all 150ms ease;
+}
+
+button.flat-action:hover {
+    background: rgba(255,255,255,0.1);
+    color: #e6edf3;
+}
+
+/* ── Text Entries ─────────────────────────────────────────── */
+entry {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #e6edf3;
+    padding: 8px 12px;
+    font-size: 13px;
+    transition: all 150ms ease;
+}
+
+entry:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.18);
+    outline: none;
+}
+
+entry placeholder {
+    color: #484f58;
+}
+
+/* ── Search Entry ─────────────────────────────────────────── */
+searchentry {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: #e6edf3;
+    padding: 8px 14px;
+    font-size: 13px;
+}
+
+searchentry:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.15);
+}
+
+/* ── List Box ─────────────────────────────────────────────── */
+listbox {
+    background: transparent;
+    border-radius: 10px;
+}
+
+listboxrow {
+    background: transparent;
+    border-radius: 8px;
+    margin: 2px 0;
+    transition: background 100ms ease;
+}
+
+listboxrow:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+listboxrow:selected {
+    background: rgba(88,166,255,0.15);
+    color: #58a6ff;
+}
+
+/* ── Dashboard Cards ──────────────────────────────────────── */
+.stat-card {
+    background: linear-gradient(135deg, rgba(22,27,34,0.98) 0%, rgba(13,17,23,0.95) 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: all 200ms ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(88,166,255,0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #58a6ff;
+    letter-spacing: -0.5px;
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.stat-icon {
+    color: #58a6ff;
+    opacity: 0.8;
+}
+
+/* ── Circular Gauge / Wave DrawingAreas ───────────────────── */
+drawingarea {
+    background: transparent;
+}
+
+
+/* ── Progress Bars ────────────────────────────────────────── */
+progressbar trough {
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    min-height: 6px;
+}
+
+progressbar progress {
+    background: linear-gradient(90deg, #58a6ff, #3b82f6);
+    border-radius: 4px;
+}
+
+/* ── Color Swatches ───────────────────────────────────────── */
+.color-swatch {
+    border-radius: 8px;
+    min-width: 36px;
+    min-height: 36px;
+    border: 2px solid rgba(255,255,255,0.1);
+    transition: all 150ms ease;
+}
+
+.color-swatch:hover {
+    border-color: rgba(255,255,255,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.color-swatch.selected {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.3);
+}
+
+.color-hex-label {
+    font-size: 11px;
+    font-weight: 500;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    color: #8b949e;
+    margin-top: 3px;
+}
+
+/* ── Color Picker Dialog ──────────────────────────────────── */
+.color-picker-dialog {
+    background: #161b22;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+}
+
+.color-grid-label {
+    font-size: 11px;
+    color: #6e7681;
+    font-weight: 500;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ── Separator ────────────────────────────────────────────── */
+separator {
+    background: rgba(255,255,255,0.06);
+    min-height: 1px;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────── */
+scrollbar {
+    background: transparent;
+    border: none;
+    min-width: 6px;
+}
+
+scrollbar slider {
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+    min-width: 6px;
+    min-height: 40px;
+    transition: background 150ms ease;
+}
+
+scrollbar slider:hover {
+    background: rgba(255,255,255,0.22);
+}
+
+/* ── Wallpaper Preview ────────────────────────────────────── */
+.wallpaper-preview {
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.03);
+}
+
+.wallpaper-preview.selected {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 2px rgba(88,166,255,0.25);
+}
+
+/* ── Pinned App Row ───────────────────────────────────────── */
+.pinned-app-row {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin: 3px 0;
+    transition: all 150ms ease;
+}
+
+.pinned-app-row:hover {
+    background: rgba(88,166,255,0.06);
+    border-color: rgba(88,166,255,0.15);
+}
+
+.drag-handle {
+    color: #484f58;
+    margin-right: 8px;
+}
+
+/* ── About Page ───────────────────────────────────────────── */
+.about-logo {
+    color: #58a6ff;
+    margin-bottom: 8px;
+}
+
+.about-version {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e6edf3;
+    letter-spacing: -0.3px;
+}
+
+.about-tagline {
+    font-size: 13px;
+    color: #8b949e;
+    margin-bottom: 20px;
+}
+
+.about-info-key {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8b949e;
+}
+
+.about-info-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: #c9d1d9;
+}
+
+/* ── Badge / Pill ─────────────────────────────────────────── */
+.badge {
+    background: rgba(88,166,255,0.15);
+    border: 1px solid rgba(88,166,255,0.3);
+    border-radius: 100px;
+    color: #58a6ff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+}
+
+.badge.green {
+    background: rgba(63,185,80,0.15);
+    border-color: rgba(63,185,80,0.3);
+    color: #3fb950;
+}
+
+.badge.orange {
+    background: rgba(210,153,34,0.15);
+    border-color: rgba(210,153,34,0.3);
+    color: #d29922;
+}
+
+.badge.red {
+    background: rgba(248,81,73,0.15);
+    border-color: rgba(248,81,73,0.3);
+    color: #f85149;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────── */
+tooltip {
+    background: #21262d;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #e6edf3;
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+/* ── Message / Notification Area ─────────────────────────── */
+.notification-bar {
+    background: rgba(88,166,255,0.1);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 10px;
+    color: #58a6ff;
+    padding: 10px 16px;
+    font-size: 13px;
 }
